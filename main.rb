@@ -12,31 +12,49 @@ require './common_utils'
 require 'csv'
 require 'fileutils'
 require 'date'
+require './validate_utils'
+require './error'
 
-Config.initialize
+config = Config.new()
 
 driver = Selenium::WebDriver.for :chrome #使用するブラウザを選択
-
-Enquete.hello
-
-Enquete.say("test dayo")
-
 
 wait = Selenium::WebDriver::Wait.new(:timeout => 100) 
 
 csvFile = File.expand_path("./product/product.csv")
 nowStr = Time.now.strftime("%Y%m%d%H%M%S")
 csv_data = CSV.read(csvFile, headers: true)
+
+# エラーチェックを先に全て行う
+errorCount = 0
+lineCount = 1
+
 csv_data.each do |data|
-    Product.initialize(data)
-    # Base.do(driver, Config, Product, wait)
-    # Creema.do(driver, Config, Product, wait)
-    # Minne.do(driver, Config, Product, wait)
-    # Iichi.do(driver, Config, Product, wait) 
+    product = Product.new(data)
+    validResult = product.validate()
+    if validResult.size > 0 then
+        puts "*** " + lineCount.to_s + "品目でエラーが発生" + " ***"
+        puts validResult.map {|item| item.message }.join("¥n")
+        errorCount = errorCount + 1
+    end
 end
 
-File.rename(csvFile, csvFile + "_" + nowStr)
-sleep(100)
+if errorCount > 0 then
+    puts "*** [処理終了]エラーが存在したため、登録を行いません ***"
+    exit
+end
+
+# エラーばなければ登録開始
+puts "登録を開始します"
+csv_data.each do |data|
+    product = Product.new(data)
+    # Base.do(driver, config, product, wait)
+    # Creema.do(driver, config, product, wait)
+    # Minne.do(driver, config, product, wait)
+    # Iichi.do(driver, config, product, wait) 
+end
+
+#     File.rename(csvFile, csvFile + "_" + nowStr)
 
 driver.quit #ブラウザを閉じて終了
 
