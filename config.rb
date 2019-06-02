@@ -1,16 +1,16 @@
 class Config
 
-    def self.initialize
+    def initialize
         config = YAML.load_file("config.yaml")
         @mail = config["user"]["mail"]
         @pass = config["user"]["pass"]
     end
 
-    def self.mail
+    def mail
         @mail
     end
   
-    def self.pass
+    def pass
         @pass
     end
     

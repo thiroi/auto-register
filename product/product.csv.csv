@@ -1,0 +1,5 @@
+商品名称,詳細,BASE金額,金額,在庫数,画像1,画像2,画像3,画像4,画像5,[Creema]カテゴリ,[Creema]素材,[iichi]素材,カラー,タグ1,タグ2,タグ3,タグ4,タグ5,サイズ,minne,iichi,creema,base
+test3,商品ディティール,1000,1100,3,./images/test.jpg,./images/test2.jpg,,,,ピアス（その他）,樹脂・レジン,プラスチック・樹脂,赤,,,,,,1.5cm,0,1,0,0
+test4,商品ディティール2,1200,1300,2,./images/test.jpg,./images/test2.jpg,,,,ピアス（その他）,樹脂・レジン,プラスチック・樹脂,青,,,,,,2.5cm,0,0,1,0
+test,商品ディティール,1000,1100,3,./images/test.jpg,./images/test2.jpg,./images/test3.jpg,./images/test4.jpg,./images/test5.jpg,ピアス（その他）,樹脂・レジン,プラスチック・樹脂,赤,,,,,,1.5cm,0,0,0,1
+test2,商品ディティール2,1200,1300,2,./images/test.jpg,./images/test2.jpg,,,,ピアス（その他）,樹脂・レジン,プラスチック・樹脂,青,,,,,,2.5cm,1,0,0,0

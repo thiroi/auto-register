@@ -4,6 +4,7 @@ module Creema
 
     # LOGIN_PAGE
         driver.navigate.to "https://www.creema.jp/user/login" #URL指定
+        sleep(3)
         driver.find_element(:id => "login-email").send_keys(config.mail)
         driver.find_element(:id => "login-password").send_keys(config.pass)
         
@@ -17,11 +18,7 @@ module Creema
         driver.find_element(:id => "form-item-title").send_keys(product.name)
 
         # 画像
-        driver.find_element(:class_name => "js-file-upload").send_keys(File.expand_path(product.image))
-        driver.find_element(:class_name => "js-file-upload").send_keys(File.expand_path(product.image2))
-        driver.find_element(:class_name => "js-file-upload").send_keys(File.expand_path(product.image3))
-        driver.find_element(:class_name => "js-file-upload").send_keys(File.expand_path(product.image4))
-        driver.find_element(:class_name => "js-file-upload").send_keys(File.expand_path(product.image5))
+        CommonUtils.addImagesWithOneClass(driver, "js-file-upload", product)
 
         # カテゴリ
         CommonUtils.selectTextWithId(driver, "form-item-level1-category-id", product.creema_category1)
@@ -41,7 +38,6 @@ module Creema
         driver.find_element(:class, "js-item-next").click
         
         # driver.find_element(:id => "itemDetail_stock").send_keys(product.stock)
-
     
 
     # 以下固定処理
@@ -58,7 +54,7 @@ module Creema
         
         # 郵送
         CommonUtils.selectTextWithName(driver, "item[craft_period]", "7日以内")
-        driver.find_element(:id, 'form-item-craft-period-note').send_keys("発送は通常数日以内（土日祝日を除く）に対応させて頂いております。お届け日時等にご指定がある場合は、購入時に備考欄へご記入ください。")
+        driver.find_element(:id, 'form-item-craft-period-note').send_keys("発送は通常数日以内（土日祝日を除く）に対応させて頂いております。\nお届け日時等にご指定がある場合は、購入時に備考欄へご記入ください。")
         
         # 次へ
         driver.find_element(:class, "js-item-confirm").click

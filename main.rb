@@ -1,5 +1,4 @@
 require 'selenium-webdriver'
-require './enquete'
 require 'yaml'
 require './config'
 require './product'
@@ -48,10 +47,25 @@ end
 puts "登録を開始します"
 csv_data.each do |data|
     product = Product.new(data)
-    # Base.do(driver, config, product, wait)
-    # Creema.do(driver, config, product, wait)
-    # Minne.do(driver, config, product, wait)
-    # Iichi.do(driver, config, product, wait) 
+
+    puts product.useMinne
+    puts product.useBase
+    puts product.useIichi
+    if product.useMinne() > 0 then
+        Minne.do(driver, config, product, wait)
+    end
+
+    if product.useBase() > 0 then
+        Base.do(driver, config, product, wait)
+    end
+
+    if product.useCreema() > 0 then
+        Creema.do(driver, config, product, wait)
+    end
+
+    if product.useIichi() > 0 then
+        Iichi.do(driver, config, product, wait) 
+    end
 end
 
 #     File.rename(csvFile, csvFile + "_" + nowStr)

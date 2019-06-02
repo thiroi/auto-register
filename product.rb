@@ -39,6 +39,10 @@ class Product
         @tag4 = data["タグ4"]
         @tag5 = data["タグ5"]
         @size = data["サイズ"]
+        @minne = data["minne"]
+        @iichi = data["iichi"]
+        @creema = data["creema"]
+        @base = data["base"]
     end
 
     def validate
@@ -57,93 +61,109 @@ class Product
         result
     end
 
-    def self.name
+    def name
         @name
     end
   
-    def self.detail
-        @detail
+    def detail
+        @detail.gsub(/(\\r\\n|\\r|\\n)/, "\n")
     end
 
-    def self.price
+    def price
         @price
     end
 
-    def self.stock
+    def stock
         @stock
     end
 
-    def self.image
+    def image
         @image
     end
     
-    def self.image2
+    def image2
         @image2
     end
 
-    def self.image3
+    def image3
         @image3
     end
 
-    def self.image4
+    def image4
         @image4
     end
 
-    def self.image5
+    def image5
         @image5
     end
 
-    def self.creema_category1
+    def creema_category1
         @creema_category1
     end
 
-    def self.creema_category2
+    def creema_category2
         @creema_category2
     end
 
-    def self.creema_category3
+    def creema_category3
         @creema_category3
     end
 
 
-    def self.minne_category
+    def minne_category
         @minne_category
     end
 
-    def self.creema_material
+    def creema_material
         @creema_material
     end
 
-    def self.iichi_material
+    def iichi_material
         @iichi_material
     end
 
-    def self.color
+    def color
         @color
     end
 
-    def self.tag1
+    def tag1
         @tag1
     end
 
-    def self.tag2
+    def tag2
         @tag2
     end
 
-    def self.tag3
+    def tag3
         @tag3
     end
 
-    def self.tag4
+    def tag4
         @tag4
     end
 
-    def self.tag5
+    def tag5
         @tag5
     end
 
-    def self.size
+    def size
         @size
+    end
+
+    def useMinne
+        @minne.to_i
+    end
+
+    def useIichi
+        @iichi.to_i
+    end
+
+    def useCreema
+        @creema.to_i
+    end
+
+    def useBase
+        @base.to_i
     end
 
 end

@@ -4,6 +4,7 @@ module Base
 
     # LOGIN_PAGE
         driver.navigate.to "https://admin.thebase.in/users/login" #URL指定
+        sleep(3)
         driver.find_element(:id => "loginUserMailAddress").send_keys(config.mail)
         driver.find_element(:id => "UserPassword").send_keys(config.pass)
         
@@ -14,12 +15,12 @@ module Base
     # REGISTER_PAGE
         driver.find_element(:id => "itemDetail_name").send_keys(product.name)
         driver.find_element(:id => "itemDetail_detail").send_keys(product.detail)
+        driver.find_element(:id => "itemDetail_price").send_keys(:backspace)
         driver.find_element(:id => "itemDetail_price").send_keys(product.price)
         driver.find_element(:id => "itemDetail_stock").send_keys(:backspace)
         driver.find_element(:id => "itemDetail_stock").send_keys(product.stock)
 
-        driver.find_element(:class_name => "fileInput_18uZvZi5").send_keys(File.expand_path(product.image))
-        driver.find_element(:class_name => "fileInput_18uZvZi5").send_keys(File.expand_path(product.image2))
+        CommonUtils.addImagesWithOneClass(driver, "fileInput_18uZvZi5", product)
 
     # 以下固定処理
       ## 公開および「一番上にする」を外す
