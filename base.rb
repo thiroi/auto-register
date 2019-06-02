@@ -24,9 +24,9 @@ module Base
 
     # 以下固定処理
       ## 公開および「一番上にする」を外す
-        elements = driver.find_element(:class, 'columnButtons_cy9Vb8bj').find_elements(:class_name => "c-checkbox__label")
-        elements[0].click
-        elements[1].click
+        # elements = driver.find_element(:class, 'columnButtons_cy9Vb8bj').find_elements(:class_name => "c-checkbox__label")
+        # elements[0].click
+        # elements[1].click
       ## TAGの「NEW」を選択
         driver.find_element(:class, "appInfoBody_1unNvrHG").find_element(:class, "c-defaultBtn").click
         wait.until {driver.find_element(:class, 'labelGreen').displayed?}
@@ -35,7 +35,8 @@ module Base
         driver.find_element(:class, "c-modal__foot").find_element(:class, "c-submitBtn").click
       
       # 登録完了処理
-
+        driver.find_element(:class, "buttonArea_1KdX5sWD").find_element(:class, "c-submitBtn").click
+        sleep(5)
       puts "*** Baseの登録が完了しました ***"
 	end
 end

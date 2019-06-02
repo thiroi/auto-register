@@ -60,10 +60,13 @@ module Creema
         driver.find_element(:class, "js-item-confirm").click
 
         # 保存 要修正
-        # wait.until {driver.find_element(:class, 'js-item-form-draft').displayed?}
-        # driver.find_element(:class, "js-item-form-draft").click
+        wait.until {driver.find_element(:id, "js-item-detail-preview-ctrl").displayed?}
+        # driver.find_element(:id, "js-item-detail-preview-ctrl").find_element(:class, "js-item-form-draft").click
+        driver.find_element(:id, "js-item-detail-preview-ctrl").find_element(:class, "js-item-form-onsale").click
 
-        # 登録完了処理
+        # driver.find_element(:class, "js-item-form-onsale").click
+        
+        sleep(10)
 
         puts "*** Creemaの登録が完了しました ***"
 	end

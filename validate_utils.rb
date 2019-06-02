@@ -16,6 +16,13 @@ class ValidateUtils
         end
     end
 
+    def self.bigger(name, value, compareVal, result)
+        intValue = value.to_i
+        if intValue < compareVal then
+            result.push(Error.new(name + "は" + compareVal.to_s + "より大きい数字にしてください"))
+        end
+    end
+
     def self.validSelect(name, value, validList, result)
         select = validList.find {|item| item.eql?(value)}
         if select == nil then

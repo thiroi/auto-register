@@ -51,6 +51,7 @@ class Product
         ValidateUtils.emptyStr("詳細", @detail, result)
         ValidateUtils.intWithoutZero("BASE金額", @baseprice, result)
         ValidateUtils.intWithoutZero("金額", @price, result)
+        ValidateUtils.bigger("金額", @price, 500, result)
         ValidateUtils.intWithoutZero("在庫数", @stock, result)
         ValidateUtils.emptyStr("画像1", @image, result)
         ValidateUtils.validSelect("[Creema]カテゴリ", @creema_category3, @@CREEMA_CATEGORIES, result)
